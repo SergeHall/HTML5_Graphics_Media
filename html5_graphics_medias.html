@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="My first steps in the WEB">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Serge">
+    <style>
+        h1 {
+            color: dodgerblue;
+            border-width: thick;
+            border-style: double;
+            text-align: center
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+        }
+
+    </style>
+    <title>HTML5 Graphics</title>
+</head>
+<body>
+    <h1>HTML5 Canvas</h1>
+        <p>HTML элемент canvas используется для рисования графики на веб странице.<br>
+            График слева создается с помощью canvas. Он показывает четыре элемента: красный прямоугольник, градиентный прямоугольник, многоцветный прямоугольник и многоцветный текст.</p>
+            <img src="pictures/canvas_examples.png" height="297" width="500"
+            alt="canvas examples"/>
+        <p><strong>Что такое HTML Canvas?</strong></p>
+        <p>HTML элемент canvas используется для рисования графики, на лету, с
+            помощью JavaScript.<br>
+            Элемент canvas - это всего лишь контейнер для графики. Вы должны
+            использовать JavaScript, чтобы на самом деле рисовать графику.<br>
+            Canvas имеет несколько методов для рисования контуров, прямоугольников, кругов, текста и добавления изображений.</p>
+    <h3>Примеры Canvas</h3>
+        <p>Холст - это прямоугольная область на HTML странице. По умолчанию холст не
+        имеет ни границ, ни содержимого.<br>
+        Разметка выглядит примерно так:</p>
+        <canvas id="myCanvas" width="200" height="100" style="border:2px solid
+        #000000;">
+        </canvas>
+        <p>Примечание: Всегда указывайте атрибут id (на который нужно ссылаться в скрипте), в атрибуте width и height чтобы определить размер холста. Чтобы добавить границу, используйте атрибут style.</p>
+
+    <h3>Нарисовать линию</h3>
+        <canvas id="myCanvas2" width="200" height="100" style="border:1px solid
+        #d3d3d3;">
+        Ваш браузер не поддерживает HTML тег canvas.</canvas>
+
+        <script>
+        var c = document.getElementById("myCanvas2");
+        var ctx = c.getContext("2d");
+        ctx.moveTo(0,0);
+        ctx.lineTo(200,100);
+        ctx.stroke();
+        </script>
+    <h3>Нарисовать круг</h3>
+        <canvas id="myCanvas3" width="200" height="100" style="border:1px solid
+        #d3d3d3;">
+        Ваш браузер не поддерживает HTML тег canvas.</canvas>
+
+        <script>
+        var c = document.getElementById("myCanvas3");
+        var ctx = c.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(95,50,40,0,2*Math.PI);
+        ctx.stroke();
+        </script>
+
+    <h3>Нарисовать текст</h3>
+        <canvas id="myCanvas4" width="200" height="100" style="border:1px solid
+        #d3d3d3;">
+        Ваш браузер не поддерживает HTML тег canvas.</canvas>
+
+        <script>
+        var c = document.getElementById("myCanvas4");
+        var ctx = c.getContext("2d");
+        ctx.font = "30px Arial";
+        ctx.fillText("Привет Мир",10,50);
+        </script>
+    <h3>Stroke текст</h3>
+        <canvas id="myCanvas5" width="200" height="100" style="border:1px solid#d3d3d3;">
+        Ваш браузер не поддерживает HTML тег canvas.</canvas>
+
+        <script>
+        var c = document.getElementById("myCanvas5");
+        var ctx = c.getContext("2d");
+        ctx.font = "30px Arial";
+        ctx.strokeText("Привет Мир",10,50);
+        </script>
+    <h3>Нарисовать линейный градиент</h3>
+        <canvas id="myCanvas6" width="200" height="100" style="border:1px solid#d3d3d3;">
+        Ваш браузер не поддерживает HTML тег canvas.</canvas>
+
+        <script>
+        var c = document.getElementById("myCanvas6");
+        var ctx = c.getContext("2d");
+        // Создать градиент
+        var grd = ctx.createLinearGradient(0,0,200,0);
+        grd.addColorStop(0,"red");
+        grd.addColorStop(1,"white");
+        // Залить градиент
+        ctx.fillStyle = grd;
+        ctx.fillRect(10,10,150,80);
+        </script>
+    <h3>Нарисовать круговой градиент</h3>
+        <canvas id="myCanvas7" width="200" height="100" style="border:1px
+        solid#d3d3d3;">
+        Ваш браузер не поддерживает HTML тег canvas.</canvas>
+
+        <script>
+        var c = document.getElementById("myCanvas7");
+        var ctx = c.getContext("2d");
+
+        // Создать градиент
+        var grd = ctx.createRadialGradient(75,50,5,90,60,100);
+        grd.addColorStop(0,"red");
+        grd.addColorStop(1,"white");
+
+        // Залить градиент
+        ctx.fillStyle = grd;
+        ctx.fillRect(10,10,150,80);
+        </script>
+    <h3>Нарисовать изображение</h3>
+        <p>Изображение применить:</p>
+
+        <img id="scream" src="pictures/the_scream.jpg" alt="the scream" height="277"
+             width="220"/>
+
+        <p>Холст для заливки:</p>
+        <canvas id="myCanvas8" width="250" height="300"
+        style="border:1px solid #d3d3d3;">
+        Ваш браузер не поддерживает HTML тег canvas..</canvas>
+
+        <p><button onclick="myCanvas()">Попробовать</button></p>
+
+        <script>
+        function myCanvas() {
+            var c = document.getElementById("myCanvas8");
+            var ctx = c.getContext("2d");
+            var img = document.getElementById("scream");
+            ctx.drawImage(img,10,10);
+        }
+        </script>
+<h1>HTML5 SVG</h1>
+    <p>SVG определяет векторную графику в формате XML.</p>
+    <p><strong>Что такое SVG?</strong></p>
+    <ul>
+        <li>SVG расшифровывается как масштабируемая векторная графика</li>
+        <li>SVG используется для определения графики для интернета</li>
+        <li>SVG - это рекомендация W3C</li>
+    </ul>
+    <h3>Элемент svg</h3>
+        <p>HTML элемент svg - это контейнер для SVG графики.<br>
+            SVG имеет несколько методов рисования контуров, прямоугольников, кругов, текста и графических изображений.</p>
+    <h3>SVG круг</h3>
+        <svg width="100" height="100">
+          <circle cx="50" cy="50" r="40"
+          stroke="red" stroke-width="4" fill="yellow" />
+        Извините, Ваш браузер не поддерживает встроенный SVG.
+        </svg>
+    <h3>SVG прямоугольник</h3>
+        <svg width="400" height="100">
+          <rect width="400" height="100"
+          style="fill:rgb(0,233,325);stroke-width:10;stroke:rgb(0,100,0)" />
+        Извините, Ваш браузер не поддерживает встроенный SVG.
+        </svg>
+    <h3>SVG Прямоугольник с закругленными углами</h3>
+        <svg width="400" height="180">
+          <rect x="50" y="20" rx="20" ry="20" width="150" height="150"
+          style="fill:red;stroke:grey;stroke-width:5;opacity:0.5" />
+        Извините, Ваш браузер не поддерживает встроенный SVG.
+        </svg>
+    <h3>SVG звезда</h3>
+        <svg width="300" height="200">
+          <polygon points="100,10 40,198 190,78 10,78 160,198"
+          style="fill:cornflowerblue;stroke:orangered;stroke-width:5;fill-rule:evenodd;" />
+        Извините, Ваш браузер не поддерживает встроенный SVG.
+        </svg>
+    <h3>SVG логотип</h3>
+        <svg height="130" width="500">
+          <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"
+              style="stop-color:rgb(255,255,0);stop-opacity:1" />
+              <stop offset="100%"
+              style="stop-color:rgb(255,0,0);stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <ellipse cx="100" cy="70" rx="85" ry="55" fill="url(#grad1)" />
+          <text fill="#ffffff" font-size="45" font-family="Verdana"
+          x="50" y="86">SVG</text>
+        Извините, Ваш браузер не поддерживает встроенный SVG.
+        </svg>
+
+    <h2>Различия между SVG и Canvas</h2>
+        <p>SVG - это язык для описания 2D графики в формате XML.<br>
+            Canvas рисует 2D графику на лету (с помощью JavaScript).<br>
+            SVG основан на XML, что означает, что каждый элемент доступен в SVG DOM.
+            Вы можете прикрепить обработчики событий JavaScript для элемента.<br>
+            В SVG каждая нарисованная фигура запоминается как объект. Если атрибуты
+            объекта SVG изменены, браузер может автоматически повторно отобразить
+            фигуру.<br>
+            Canvas визуализируется пиксель за пикселем. В canvas, как только рисунок нарисован,
+            он забывается браузером. Если его положение должно быть изменено, вся сцена должна быть перерисована,
+            включая любые объекты, которые могли бы быть покрыты графикой.</p>
+        <p>Сравнение Canvas и SVG</p>
+        <p>В таблице ниже показаны некоторые важные различия между Canvas и SVG:</p>
+        <table style="width:100%">
+          <tr>
+            <th>Canvas</th>
+            <th>SVG</th>
+          </tr>
+          <tr>
+              <td>
+                  <ul>
+                      <li>Зависит от разрешения</li>
+                      <li>Нет поддержки обработчиков событий</li>
+                      <li>Плохие возможности рендеринга текста</li>
+                      <li>Вы можете сохранить полученное изображение как .png или .jpg</li>
+                      <li>Хорошо подходит для игр с интенсивной графикой</li>
+                  </ul>
+              </td>
+              <td>
+                  <ul>
+                      <li>Разрешение независимое</li>
+                      <li>Поддержка обработчиков событий</li>
+                      <li>Лучше всего подходит для приложений с большими областями рендеринга (Google Maps)</li>
+                      <li>Медленный рендеринг, если он сложный (все, что использует DOM много, будет медленным)</li>
+                      <li>Не подходит для игровых приложений</li>
+                  </ul>
+              </td>
+          </tr>
+        </table><br><br>
+
+    <h1>HTML5 Media</h1>
+        <p>Мультимедиа в интернете - это звук, музыка, видео, фильмы и анимация.</p>
+        <p>Мультимедийные файлы имеют форматы и различные расширения, такие как: .wav, .mp3, .mp4, .mpg, .wmv, and .avi.</p>
+        <p>Существует множество видеоформатов.<br>
+            MP4, WebM, и Ogg форматы поддерживаются HTML.<br>
+            Формат MP4 рекомендуется YouTube.</p>
+
+        <h3>Распространенные видеоформаты</h3>
+        <table style="width:100%">
+          <tr>
+            <th>Формат</th>
+            <th>Файл</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td>MPEG</td>
+            <td>.mpg .mpeg</td>
+            <td>MPEG. (Moving Pictures Expert Group) Разработано группой экспертов по движущимся изображениям. Первый популярный формат видео в интернете. Больше не поддерживается в HTML.</td>
+          </tr>
+          <tr>
+            <td>AVI</td>
+            <td>.avi</td>
+            <td>AVI (Audio Video Interleave) Аудио видео чередование. Разработанный Microsoft. Обычно используется в видеокамерах и телевизионном оборудовании. Хорошо работает на компьютерах с Windows, но не в веб браузерах.</td>
+          </tr>
+          <tr>
+            <td>WMV</td>
+            <td>.wmv</td>
+            <td>WMV (Windows Media Video). Разработанный Microsoft. Обычно используется в видеокамерах и телевизионном оборудовании. Хорошо работает на компьютерах с Windows, но не в веб браузерах.</td>
+          </tr>
+          <tr>
+            <td>QuickTime</td>
+            <td>.mov</td>
+            <td>QuickTime. Разработано Apple. Обычно используется в видеокамерах и телевизионном оборудовании. Хорошо работает на компьютерах Apple, но не в веб браузерах.</td>
+          </tr>
+          <tr>
+            <td>RealVideo</td>
+            <td>.rm .ram</td>
+            <td>RealVideo. Разработано Real Media, чтобы позволить потоковое вещание с низкой пропускной способностью. Не воспроизводится в веб браузерах.</td>
+          </tr>
+          <tr>
+            <td>Flash</td>
+            <td>.swf .flv</td>
+            <td>Flash. Разработано компанией Macromedia. Часто требуется дополнительный компонент (плагин) для воспроизведения в веб браузерах.</td>
+          </tr>
+          <tr>
+            <td>Ogg</td>
+            <td>.ogg</td>
+            <td>Theora Ogg. Разработано компанией Xiph.Org Foundation. Поддерживается HTML.</td>
+          </tr>
+          <tr>
+            <td>WebM</td>
+            <td>.webm</td>
+            <td>WebM. Разработано Mozilla, Opera, Adobe и Google. Поддерживается HTML.</td>
+          </tr>
+          <tr>
+            <td>MPEG-4 or MP4</td>
+            <td>.mp4</td>
+            <td>MP4. (Moving Pictures Expert Group) Разработано группой экспертов по движущимся изображениям. Обычно используется в видеокамерах и телевизионном оборудовании. Поддерживается всеми браузерами и рекомендуется YouTube.</td>
+          </tr>
+        </table>
+        <p>Стандарт HTML поддерживает только видео MP4, WebM и Ogg.</p>
+    <h3>Распространенные аудиоформаты</h3>
+        <p>MP3 - это лучший формат для сжатой записанной музыки. Термин MP3 стал
+            синонимом цифровой музыки.<br>
+            Если ваш сайт посвящен записанной музыке, то MP3 - это ваш выбор.</p>
+        <table style="width:100%">
+          <tr>
+            <th>Формат</th>
+            <th>Файл</th>
+            <th>Описание</th>
+          </tr>
+          <tr>
+            <td>MIDI</td>
+            <td>.mid .midi</td>
+            <td>MIDI (Musical Instrument Digital Interface) Цифровой интерфейс музыкального инструмента. Основной формат для всех электронных музыкальных устройств, таких как синтезаторы и звуковые карты ПК. MIDI файлы содержат не звук, а цифровые ноты, которые могут воспроизводиться электроникой. Хорошо воспроизводится на всех компьютерах и музыкальном оборудовании, но не в веб браузерах.</td>
+          </tr>
+          <tr>
+            <td>RealAudio</td>
+            <td>.rm .ram</td>
+            <td>RealAudio. Разработан Real Media для обеспечения потоковое воспроизведение аудио с низкой пропускной способностью. Не воспроизводится в веб браузерах.</td>
+          </tr>
+          <tr>
+            <td>WMA</td>
+            <td>.wma</td>
+            <td>WMA (Windows Media Audio). Разработанный Microsoft. Хорошо работает на компьютерах с Windows, но не в веб браузерах.</td>
+          </tr>
+          <tr>
+            <td>AAC</td>
+            <td>.aac</td>
+            <td>AAC (Advanced Audio Coding) Усовершенствованное кодирование звука. Разработан компанией Apple в качестве формата по умолчанию для iTunes. Хорошо работает на компьютерах Apple, но не в веб браузерах.</td>
+          </tr>
+          <tr>
+            <td>WAV</td>
+            <td>.wav</td>
+            <td>WAV. Разработано фирмами IBM и Microsoft. Хорошо работает в операционных системах Windows, Macintosh и Linux. Поддерживается HTML.</td>
+          </tr>
+          <tr>
+            <td>Ogg</td>
+            <td>.ogg</td>
+            <td>Ogg. Разработано Xiph.Org Foundation. Поддерживается HTML.</td>
+          </tr>
+          <tr>
+            <td>MP3</td>
+            <td>.mp3</td>
+            <td>MP3 файлы на самом деле являются звуковой частью MPEG файлов. MP3 это самый популярный формат для музыкальных плееров. Сочетает в себе хорошее сжатие (небольшие файлы) с высоким качеством. Поддерживается всеми браузерами.</td>
+          </tr>
+          <tr>
+            <td>MP4</td>
+            <td>.mp4</td>
+            <td>MP4 это видеоформат, но он также может использоваться для аудио. Поддерживается всеми браузерами.</td>
+          </tr>
+        </table>
+        <p>Только MP3, WAV и Ogg аудио поддерживаются стандартом HTML.</p>
+    <h1>HTML Video</h1>
+        <p>Чтобы показать видео в формате HTML, используйте элемент video:</p>
+        <p>HTML Video - Методы, свойства и события</p>
+        <h3>HTML Видео с JavaScript</h3>
+
+        <div style="text-align:center">
+          <button onclick="playPause()">Воспр./Пауза</button>
+          <button onclick="makeBig()">Бол.</button>
+          <button onclick="makeSmall()">Мал.</button>
+          <button onclick="makeNormal()">Норм.</button>
+          <br><br>
+        <video id="video1" width="640"  controls>
+            <source src="my_video/Nastya_Mouse.mov" type="video/mp4">
+            Ваш браузер не поддерживает тег video.
+        </video>
+        </div>
+        <script>
+        var myVideo = document.getElementById("video1");
+
+        function playPause() {
+        if (myVideo.paused)
+            myVideo.play();
+        else
+            myVideo.pause();
+        }
+
+        function makeBig() {
+        myVideo.width = 840;
+        }
+
+        function makeSmall() {
+        myVideo.width = 420;
+        }
+
+        function makeNormal() {
+        myVideo.width = 640;
+        }
+        </script>
+        <p>
+        Видео предоставлено
+        <a href="https://www.sergioartg.com/video" target="_blank">New York Mood
+            @segioartg</a>.
+        </p>
+        <p>Атрибут controls добавляет элементы управления видео, такие как
+            воспроизведение, пауза и громкость.<br>
+            Это хорошая идея, чтобы всегда включать атрибуты width и height. Если
+            высота и ширина не заданы, страница может мерцать во время загрузки
+            видео.<br>
+            Элемент source позволяет указать альтернативные видеофайлы, из которых
+            браузер может выбрать. Браузер будет использовать первый распознанный
+            формат.<br>
+            Текст между тегами video и video будет отображаться только в браузерах, которые не поддерживают элементы video.</p>
+        <p>HTML определяет методы, свойства и события DOM для элемента video.<br>
+            Это позволяет загружать, воспроизводить и приостанавливать видео, а также
+            устанавливать продолжительность и громкость.<br>
+            Существуют также события DOM, которые могут уведомлять вас, когда видео начинает воспроизводиться, приостанавливается и т.д.</p>
+    <h1>HTML5 Аудио</h1>
+        <p>HTML элемент audio используется для воспроизведения аудиофайла на веб странице.</p>
+        <audio controls>
+          <source src="my_audio/Better_Memories.mp3" type="audio/mp3">
+          Ваш браузер не поддерживает элемент audio.
+        </audio>
+        <p>Атрибут controls добавляет элементы управления звуком, такие как
+            воспроизведение, пауза и громкость.<br>
+            Элемент source позволяет указать альтернативные аудиофайлы, из которых
+            браузер может выбрать. Браузер будет использовать первый распознанный
+            формат.<br>
+            Текст между тегами audio и audio будут отображаться только в браузерах, которые не поддерживают элемент audio.</p>
+            <img src="pictures/format_audio.png" alt="format_audio" height="751" width="1000"/>
+        <p>HTML Audio - Методы, свойства и события</p>
+        <p>HTML определяет методы, свойства и события DOM для элемента audio.
+            Это позволяет загружать, воспроизводить и приостанавливать аудио, а также
+            устанавливать продолжительность и громкость.<br>
+            Существуют также события DOM, которые могут уведомлять вас, когда звук начинает воспроизводиться, приостанавливается и т.д.</p>
+<h1>HTML Плагины</h1>
+<p>Плагины - это компьютерные программы, расширяющие стандартные функциональные возможности браузера.</p>
+<p>Плагины были разработаны для использования в самых разных целях:</p>
+<ul>
+    <li>Для запуска Java апплеты</li>
+    <li>Запуск элементов управления Microsoft ActiveX</li>
+    <li>Для отображения Флэш фильмов</li>
+    <li>Для отображения карт</li>
+    <li>Для проверки на вирусы</li>
+    <li>Для проверки банковского идентификатора</li>
+</ul>
+<p><strong>Внимание !<br>
+    Большинство браузеров больше не поддерживают Java приложения и плагины.<br>
+    Элементы управления ActiveX больше не поддерживаются ни в одном
+    браузере.<br>
+    Поддержка Shockwave Flash также была отключена в современных браузерах.</strong></p>
+<h3>Элемент object</h3>
+    <p>Элемент object поддерживается всеми браузерами.<br>
+        Элемент object определяет встроенный объект в HTML документе.<br>
+        Он был разработан для встраивания плагинов (таких как Java-апплеты, PDF-ридеры и Flash-плееры) в веб страницы, но также может быть использован для включения HTML в HTML:</p>
+    <object data="pictures/the_scream.jpg"></object>
+<h3>Элемент embed</h3>
+    Элемент embed поддерживается во всех основных браузерах.<br>
+    Элемент embed также определяет встроенный объект в HTML документе.<br>
+    Веб браузеры поддерживают элемент embed в течение длительного времени.
+    Однако он не был частью спецификации HTML до HTML5.
+    <embed src="pictures/the_scream.jpg">
+    <p>Обратите внимание, что элемент embed не имеет закрывающего тега. Он не
+        может содержать альтернативный текст.</p>
+<h3>HTML YouTube</h3>
+<p>Самый простой способ воспроизведения видео в формате HTML - это использовать YouTube.</p>
+    <p><strong>Боретесь с видеоформатами?</strong><br>
+    Ранее в этом уроке вы видели, что вам, возможно, придется конвертировать
+    ваши видео в различные форматы, чтобы они воспроизводились во всех
+    браузерах.<br>
+    Преобразование видео в различные форматы может быть сложным и трудоемким.<br>
+    Более простое решение позволить YouTube воспроизводить видео на вашей веб странице.</p>
+<p>YouTube Видео идентификатор<br>
+    YouTube будет отображать идентификатор (например, tgbNymZ7vqY), когда вы
+    сохраняете (или воспроизводите) видео.<br>
+    Вы можете использовать этот идентификатор и ссылаться на свое видео в HTML коде.</p>
+<p><strong>Воспроизведение видео YouTube в формате HTML</strong></p>
+<p>Чтобы воспроизвести видео на веб странице, выполните следующие действия:</p>
+<ul>
+    <li>Загрузите видео на YouTube</li>
+    <li>Обратите внимание на идентификатор видео</li>
+    <li>Определите элемент iframe на вашей веб странице</li>
+    <li>Пусть атрибут src указывает на URL адрес видео</li>
+    <li>Используйте атрибуты width и height для указания размера проигрывателя</li>
+    <li>Добавьте любые другие параметры к URL адресу (см. ниже)</li>
+</ul>
+<iframe width="1280" height="720"
+        src="https://www.youtube.com/embed/317J8mSLal0"></iframe>
+<p>YouTube <strong>Автозапуск</strong><br>
+    Вы можете сделать так, чтобы ваше видео начинало воспроизводиться
+    автоматически, когда пользователь посещает эту страницу, добавив простой
+    параметр к вашему URL адресу YouTube.<br>
+    Примечание: Будьте внимательны, принимая решение о автозапуске ваших
+    видео. Автоматический запуск видео может раздражать вашего посетителя и в
+    конечном итоге причинить больше вреда, чем пользы.<br>
+    <strong>Значение 0</strong> (по умолчанию): Видео не будет воспроизводиться
+        автоматически при загрузке проигрывателя.<br>
+    <strong>Значение 1</strong>: Видео будет воспроизводиться автоматически при
+        загрузке проигрывателя.</p>
+<p>YouTube Плей-лист<br>
+Разделенный запятыми список видео для воспроизведения (в дополнение к исходному URL адресу).</p>
+<p>YouTube Цикл<br>
+    Значение 0 (по умолчанию): Видео будет воспроизводиться только один раз.<br>
+    Значение 1: Видео будет зацикливаться (навсегда).<br>
+    src="https://www.youtube.com/embed/317J8mSLal0?<strong>playlist=317J8mSLal0&loop
+    =1</strong>"</p>
+<p>YouTube Управления<br>
+    Значение 0: элементы управления плеером не отображаются.<br>
+    Значение 1 (по умолчанию): Дисплей управления плеером.</p>
+</body>
+</html>
